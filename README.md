@@ -1,10 +1,10 @@
 # Project Instructions
 ## Get and disply 12 random users from [the Random User Generator API](https://randomuser.me/)
 - Using photos and information that the API provides, you'll display 12 users, along with some basic information:
-    - [] Image
-    - [] First and Last Name
-    - [] Email
-    - [] City
+    - [ ] Image
+    - [ ] First and Last Name
+    - [ ] Email
+    - [ ] City
 
 - Create a modal Window tha twill pop up when any part of the user's row is clicked. The following details should display in the modal window:
     - [] Image
