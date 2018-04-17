@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*=========================*/
 /*  Jennifer Nordell       */
 /*  Treehouse Techdegree   */
