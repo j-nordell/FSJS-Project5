@@ -1,0 +1,29 @@
+Colors:
+
+    Cards: background 255,255,255
+    Directory page background: 252, 252, 252
+    Dark text: 64, 74, 81
+    Light gray text: 136, 141, 145
+    Card border:  223, 223, 223
+
+Dimensions:  (width by height)
+
+    Page: 1440px x 1024px
+    Between top and first row of cards:  about 116.9px
+    Title: 14.2px
+    Height of name: 14.2px
+    Light text "M": 14.1px
+    Between name and light text: 17.9px
+    Between light text and light text: 15.5px
+    Card gutter: 38.6px
+    Left margin: 61.1px
+    Right margin: 60.0px
+
+Modal:
+    
+    Size of X: 11.3px
+    Size of picture: 170px x 170px
+    Right margin of X: 47.1px
+    Right margin of horizontal rule: 37.7px
+    Margin top picture: 51px
+
