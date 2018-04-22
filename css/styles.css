@@ -1,0 +1,4 @@
+.fullname,
+.city {
+    text-transform: capitalize;
+}
