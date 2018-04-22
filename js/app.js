@@ -1,4 +1,3 @@
-
 /*=========================*/
 /*  Jennifer Nordell       */
 /*  Treehouse Techdegree   */
@@ -8,11 +7,21 @@
 
 let employees = null;
 
-$.ajax({
-  url: 'https://randomuser.me/api/?nat=us,gb&results=12',
-  dataType: 'json',
-  success: function(data) {
-    employees = data.results;
-  }
-});
+getEmployees();
 
+function getEmployees() {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = () => {
+  if(xhr.readyState === 4) {
+    employees = JSON.parse(xhr.responseText).results;
+    initApplication();
+  }
+  }; 
+  xhr.open("GET", "https://randomuser.me/api/?nat=us,gb&results=12");
+  xhr.send();
+}
+
+
+function initApplication() {
+  console.log(employees);  // it's still null here
+}
