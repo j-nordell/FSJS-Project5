@@ -23,20 +23,27 @@ body {
     line-height: 1.5;
     font-family: var(--font-stack);
     margin: 0;
-    min-width: 100%;
-    min-height: 100%;
+    text-align: center;
     background-color: var(--bg-dark);
+}
+
+header {
+    margin: 30px 0px 30px 0px;
 }
 
 h1 {
     font-size: 1em;
     text-transform: uppercase;
+    text-align: left;
 }
 
 /* ====================== 
     Component Styles  
 ========================*/
-
+.wrapper {
+    width: 93%;
+    margin: 0 auto;
+}
 .card {
     padding: 1.5em 1em;
     border: 3px solid var(--card-border);
@@ -56,6 +63,8 @@ h1 {
 .card-text {
     margin-left: 150px;
     line-height: 1;
+    text-align: left;
+    word-wrap: break-word;
 }
 
 .fullname {
@@ -79,12 +88,17 @@ h1 {
 ========================*/
 
 main {
-    width: 95%;
-    max-width:100%;
-    margin: 0 auto;
-
+    width: 100%;
+ 
     display: grid;
-
     grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
-    grid-gap: 20px;
+    grid-gap: 45px;
+}
+
+@media(min-width: 769px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 1fr);
+        grid-gap: 25px;
+     }
 }
