@@ -1,4 +1,90 @@
+/* ====================== 
+    Variables  
+========================*/
+:root {
+    --font-stack: 'Montserrat', sans-serif;
+    --bg-dark: rgb(242, 242, 242);
+    --bg-light: rgb(255, 255, 255);
+    --dark-text: rgb(64, 74, 81);
+    --light-text: rgb(136, 141, 145);
+    --card-border:  rgb(203, 203, 203);
+}
+
+/* ====================== 
+    Page Styles  
+========================*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: var(--font-stack);
+    margin: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: var(--bg-dark);
+}
+
+h1 {
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+/* ====================== 
+    Component Styles  
+========================*/
+
+.card {
+    padding: 1.5em 1em;
+    border: 3px solid var(--card-border);
+    border-radius: 0.4em;
+    background-color: var(--bg-light);
+}
+
+.card-img {
+    float: left;
+}
+
+.card-img img {
+    border-radius: 50%;
+    display: block;
+}
+
+.card-text {
+    margin-left: 150px;
+    line-height: 1;
+}
+
+.fullname {
+    margin-top: 2em;
+    font-weight: bold;
+}
+
 .fullname,
 .city {
     text-transform: capitalize;
+}
+
+.email,
+.city {
+    color: var(--light-text);
+    font-size: 0.75em;
+}
+
+/* ====================== 
+    Layout Styles  
+========================*/
+
+main {
+    width: 95%;
+    max-width:100%;
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    grid-gap: 20px;
 }
