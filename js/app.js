@@ -21,7 +21,6 @@ function getEmployees() {
   xhr.send();
 }
 
-
 function initApplication() {
   console.log(employees);
   fillCards();
