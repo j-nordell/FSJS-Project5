@@ -37,6 +37,12 @@ h1 {
     text-align: left;
 }
 
+
+img {
+    border-radius: 50%;
+    display: block;
+}
+
 /* ====================== 
     Component Styles  
 ========================*/
@@ -60,10 +66,6 @@ h1 {
     float: left;
 }
 
-.card-img img {
-    border-radius: 50%;
-    display: block;
-}
 
 .card-text {
     margin-left: 150px;
@@ -109,10 +111,10 @@ h1 {
 .modal-content {
     background-color: var(--bg-light);
     border-radius: 2%;
-    margin: 10% auto; 
+    margin: 35px auto; 
     padding: 20px;
     border: 1px solid var(--card-border);
-    width: 40%;
+    width: 50%;
     display: inline-block;
 }
 
@@ -120,14 +122,25 @@ h1 {
 .close {
     color: #aaa;
     float: right;
-    font-size: 50px;
+    font-size: 40px;
+    line-height: 0.5em;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: rgb(39, 38, 38);
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal-text {
+    text-align: center;
+}
+
+.modal-image {
+    display: block;
+    margin: auto;
+    clear: both;
 }
 
 /* ====================== 
@@ -138,14 +151,6 @@ main {
     width: 100%;
  
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
     grid-gap: 45px;
-}
-
-@media(min-width: 769px) {
-    main {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, 1fr);
-        grid-gap: 25px;
-     }
 }

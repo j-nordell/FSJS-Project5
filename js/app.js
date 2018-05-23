@@ -5,7 +5,7 @@
 /*  Employee Directory     */
 /*=========================*/
 
-let employees = null;
+let allEmployees = null;
 
 getEmployees();
 
@@ -13,7 +13,7 @@ function getEmployees() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
   if(xhr.readyState === 4) {
-    employees = JSON.parse(xhr.responseText).results;
+    allEmployees = JSON.parse(xhr.responseText).results;
     initApplication();
   }
   }; 
@@ -22,21 +22,22 @@ function getEmployees() {
 }
 
 function initApplication() {
-  fillCards();
+  fillCards(allEmployees);
   setupModal();
+  console.log(allEmployees[0]);
 }
 
-function fillCards() {
-  for(let i = 0; i < employees.length; i++) {
-    let currentCard = document.getElementById(`employee${i}`);
-    currentCard.getElementsByTagName("img")[0].setAttribute("src", `${employees[i].picture.large}`);
-    currentCard.getElementsByClassName("fullname")[0].textContent = `${employees[i].name.first}  ${employees[i].name.last}`;
-    currentCard.getElementsByClassName("email")[0].textContent = `${employees[i].email}`;
-    currentCard.getElementsByClassName("city")[0].textContent = `${employees[i].location.city}`;
+function fillCards(employeeList) {
+  for(let i = 0; i < employeeList.length; i++) {
+    let currentCard = document.getElementById(`${i}`);
+    currentCard.getElementsByTagName("img")[0].setAttribute("src", `${employeeList[i].picture.large}`);
+    currentCard.getElementsByClassName("fullname")[0].textContent = `${employeeList[i].name.first}  ${employeeList[i].name.last}`;
+    currentCard.getElementsByClassName("email")[0].textContent = `${employeeList[i].email}`;
+    currentCard.getElementsByClassName("city")[0].textContent = `${employeeList[i].location.city}`;
   }
  }
 
- function setupModal() {
+ function setupModal(employeeList) {
    // Get the modal
     let modal = document.getElementById('modal');
 
@@ -49,9 +50,8 @@ function fillCards() {
     for(let card of cards) {
       card.onclick = () => {
         modal.style.display = "block";
-        let index = card.id;
-        console.log(index);
-        fillModal();
+        let index = parseInt(card.id);
+        fillModal(index);
       };
     }
     // When the user clicks on <span> (x), close the modal
@@ -65,9 +65,14 @@ function fillCards() {
             modal.style.display = "none";
         }
     }
+  }
 
-    function fillModal(e) {
-      let modalContent = document.getElementById("modal-content");
-      modalContent.getElementsByTagName("img")[0].setAttribute("src", `${employees[0].picture.large}`);
-    }
- }
+
+
+  function fillModal(index) {
+    let modalContent = document.getElementById("modal-content");
+    modalContent.getElementsByTagName("img")[0].setAttribute("src", `${allEmployees[index].picture.large}`);
+    document.getElementById("modal-fullname").innerText = `${allEmployees[index].name.first}  ${allEmployees[index].name.last}`;
+    document.getElementById("modal-email").innerText = `${allEmployees[index].email}`;
+  }
+
