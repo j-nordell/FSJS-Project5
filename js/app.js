@@ -16,7 +16,7 @@ function getEmployees() {
     allEmployees = JSON.parse(xhr.responseText).results;
     initApplication();
   }
-  }; 
+  };
   xhr.open("GET", "https://randomuser.me/api/?nat=us,gb&results=12");
   xhr.send();
 }
@@ -45,7 +45,7 @@ function fillCards(employeeList) {
     let cards = document.getElementsByClassName("card");
 
     // Get the <span> element that closes the modal
-    let span = document.getElementsByClassName("close")[0];
+    let closeX = document.getElementsByClassName("close")[0];
 
     for(let card of cards) {
       card.onclick = () => {
@@ -54,12 +54,12 @@ function fillCards(employeeList) {
         fillModal(index);
       };
     }
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = () => {
+    // Clicking on the X causes the modal to close
+    closeX.onclick = () => {
         modal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
+    // Clicking outside of the modal cause it to close
     window.onclick = (e) => {
         if (e.target == modal) {
             modal.style.display = "none";
@@ -71,8 +71,14 @@ function fillCards(employeeList) {
 
   function fillModal(index) {
     let modalContent = document.getElementById("modal-content");
-    modalContent.getElementsByTagName("img")[0].setAttribute("src", `${allEmployees[index].picture.large}`);
-    document.getElementById("modal-fullname").innerText = `${allEmployees[index].name.first}  ${allEmployees[index].name.last}`;
-    document.getElementById("modal-email").innerText = `${allEmployees[index].email}`;
+    let employee= allEmployees[index];
+    let birthday = new Date(employee.dob).toLocaleDateString();
+    modalContent.getElementsByTagName("img")[0].setAttribute("src", `${employee.picture.large}`);
+    document.getElementById("modal-fullname").innerText = `${employee.name.first}  ${employee.name.last}`;
+    document.getElementById("modal-email").innerText = `${employee.email}`;
+    document.getElementById("modal-city").innerText = `${employee.location.city}`;
+    document.getElementById("modal-telephone").innerText = `${employee.phone}`;
+    document.getElementById("modal-street").innerText = `${employee.location.street}\u00A0\u00A0${employee.location.city}, ${employee.location.state}\u00A0\u00A0${employee.location.postcode}`;
+    document.getElementById("modal-birthdate").innerText = `Birthday: ${birthday}`;
   }
 

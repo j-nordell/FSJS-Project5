@@ -7,6 +7,7 @@
     --bg-light: rgb(255, 255, 255);
     --dark-text: rgb(64, 74, 81);
     --light-text: rgb(136, 141, 145);
+    --vlight-text: rgb(147, 149, 151);
     --card-border:  rgb(203, 203, 203);
 }
 
@@ -41,6 +42,7 @@ h1 {
 img {
     border-radius: 50%;
     display: block;
+    margin: auto;
 }
 
 /* ====================== 
@@ -80,12 +82,17 @@ img {
 }
 
 .fullname,
-.city {
+.city,
+.address,
+.birthdate {
     text-transform: capitalize;
 }
 
 .email,
-.city {
+.city, 
+.telephone,
+.address,
+.birthdate {
     color: var(--light-text);
     font-size: 0.75em;
 }
@@ -103,10 +110,9 @@ img {
     width: 100%; 
     height: 100%; 
     overflow: auto; 
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
 }
-
 /* Modal Content/Box */
 .modal-content {
     background-color: var(--bg-light);
@@ -120,7 +126,7 @@ img {
 
 /* The Close Button */
 .close {
-    color: #aaa;
+    color: black;
     float: right;
     font-size: 40px;
     line-height: 0.5em;
@@ -135,9 +141,43 @@ img {
 
 .modal-text {
     text-align: center;
+    margin: auto;
 }
 
-.modal-image {
+
+
+.modal-text button {
+    border: 0;
+    background: none;
+    box-shadow: none;
+    border-radius: 50%;
+    text-decoration: none;
+    -webkit-transition: 0.25s ease;
+    transition: 0.25s ease;
+    font-size: 4em; 
+}
+
+#prev {
+    float: left;
+    font-size: 3em;
+}
+
+#next {
+    float: right;
+    font-size: 3em;
+}
+
+#prev:hover,
+#next:hover {
+    text-shadow: 3px 0px 0.1em rgb(228, 148, 0);
+}
+
+hr {
+    clear: both;
+    border: 1px solid var(--vlight-text);
+    width: 80%;
+}
+.modal-img {
     display: block;
     margin: auto;
     clear: both;
@@ -154,3 +194,4 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
     grid-gap: 45px;
 }
+
