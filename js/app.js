@@ -121,14 +121,18 @@ function getEmployeeId(email) {
 
 function fillModal(employee) {
   let modalContent = document.getElementById("modal-content");
-
+  let country;
   let birthday = new Date(employee.dob).toLocaleDateString();
+
+  country = `${employee.nat}` === "US" ? "United States" : "Great Britain";
+
   modalContent.getElementsByTagName("img")[0].setAttribute("src", `${employee.picture.large}`);
   document.getElementById("modal-fullname").innerText = `${employee.name.first}  ${employee.name.last}`;
+  document.getElementById("modal-username").innerText = `${employee.login.username}`;
   document.getElementById("modal-email").innerText = `${employee.email}`;
   document.getElementById("modal-city").innerText = `${employee.location.city}`;
   document.getElementById("modal-telephone").innerText = `${employee.phone}`;
-  document.getElementById("modal-street").innerText = `${employee.location.street}\u00A0\u00A0${employee.location.city}, ${employee.location.state}\u00A0\u00A0${employee.location.postcode}`;
+  document.getElementById("modal-street").innerText = `${employee.location.street}\u00A0\u00A0${employee.location.city}, ${country}\u00A0\u00A0${employee.location.postcode}`;
   document.getElementById("modal-birthdate").innerText = `Birthday: ${birthday}`;
 }
 
@@ -158,6 +162,7 @@ function fillModal(employee) {
     setupModal(searchResults);
   }
 
+// Hide all the employees to make room for search results
 function hideAllEmployees() {
   let cards = document.getElementsByClassName("card");
   for(let card of cards) {

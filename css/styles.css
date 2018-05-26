@@ -156,7 +156,8 @@ img {
 }
 
 .email,
-.city, 
+.city,
+.username, 
 .telephone,
 .address,
 .birthdate {
