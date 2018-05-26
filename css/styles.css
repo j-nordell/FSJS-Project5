@@ -168,8 +168,11 @@ img {
 }
 
 #prev:hover,
-#next:hover {
-    text-shadow: 3px 0px 0.1em rgb(228, 148, 0);
+#prev:focus,
+#next:hover,
+#next:focus {
+    text-shadow: 3px 3px 0.1em rgb(228, 148, 0), 0px 0px 10px rgb(228, 148, 0);
+    cursor: pointer;
 }
 
 hr {

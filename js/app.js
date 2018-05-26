@@ -4,7 +4,7 @@
 /*  Project 5              */
 /*  Employee Directory     */
 /*=========================*/
-
+'use strict';
 let allEmployees = null;
 
 getEmployees();
@@ -24,7 +24,6 @@ function getEmployees() {
 function initApplication() {
   fillCards(allEmployees);
   setupModal();
-  console.log(allEmployees[0]);
 }
 
 function fillCards(employeeList) {
@@ -47,6 +46,10 @@ function fillCards(employeeList) {
     // Get the <span> element that closes the modal
     let closeX = document.getElementsByClassName("close")[0];
 
+    // Get the spans for navigation
+    let prev = document.getElementById("prev");
+    let next = document.getElementById("next");
+
     for(let card of cards) {
       card.onclick = () => {
         modal.style.display = "block";
@@ -57,21 +60,42 @@ function fillCards(employeeList) {
     // Clicking on the X causes the modal to close
     closeX.onclick = () => {
         modal.style.display = "none";
-    }
+    };
 
     // Clicking outside of the modal cause it to close
     window.onclick = (e) => {
         if (e.target == modal) {
             modal.style.display = "none";
         }
-    }
+    };
+
+    prev.onclick = (e) => {
+      let employeeId = getEmployeeId();
+      fillModal(((employeeId - 1) + allEmployees.length) % allEmployees.length);
+    };
+
+    next.onclick = (e) => {
+      let employeeId = getEmployeeId();
+      fillModal(((employeeId + 1) + allEmployees.length) % allEmployees.length);
+    };
   }
 
-
+function getEmployeeId() {
+    let personMail = document.getElementById("modal-email").innerText.toLowerCase();
+    let personId;
+    for(let i = 0; i < allEmployees.length; i++) {
+      if(allEmployees[i].email === personMail) {
+        personId = i;
+        return i;
+      }
+    }
+    return null;
+}
 
   function fillModal(index) {
     let modalContent = document.getElementById("modal-content");
     let employee= allEmployees[index];
+
     let birthday = new Date(employee.dob).toLocaleDateString();
     modalContent.getElementsByTagName("img")[0].setAttribute("src", `${employee.picture.large}`);
     document.getElementById("modal-fullname").innerText = `${employee.name.first}  ${employee.name.last}`;
@@ -81,4 +105,5 @@ function fillCards(employeeList) {
     document.getElementById("modal-street").innerText = `${employee.location.street}\u00A0\u00A0${employee.location.city}, ${employee.location.state}\u00A0\u00A0${employee.location.postcode}`;
     document.getElementById("modal-birthdate").innerText = `Birthday: ${birthday}`;
   }
+
 
