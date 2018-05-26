@@ -9,7 +9,7 @@
     --light-text: rgb(136, 141, 145);
     --vlight-text: rgb(147, 149, 151);
     --card-border:  rgb(203, 203, 203);
-    --highlight: rgb(228, 148, 0);
+    --highlight: rgb(132, 167, 243);
 }
 
 /* ====================== 
@@ -127,7 +127,7 @@ img {
 }
 
 .card:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 15px rgba(0,0,0,0.25), 0 10px 10px var(--highlight);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
@@ -202,7 +202,7 @@ img {
 
 .close:hover,
 .close:focus {
-    color: rgb(39, 38, 38);
+    color: var(--highlight);
     text-decoration: none;
     cursor: pointer;
 }
@@ -264,5 +264,6 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
     grid-gap: 45px;
+    margin-bottom: 100px;
 }
 
