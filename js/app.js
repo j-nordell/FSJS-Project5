@@ -131,7 +131,6 @@ function fillModal(employee) {
   document.getElementById("modal-fullname").innerText = `${employee.name.first}  ${employee.name.last}`;
   document.getElementById("modal-username").innerText = `${employee.login.username}`;
   document.getElementById("modal-email").innerText = `${employee.email}`;
-  document.getElementById("modal-city").innerText = `${employee.location.city}`;
   document.getElementById("modal-telephone").innerText = `${employee.phone}`;
   document.getElementById("modal-street").innerText = `${employee.location.street}\u00A0\u00A0${employee.location.city}, ${country}\u00A0\u00A0${employee.location.postcode}`;
   document.getElementById("modal-birthdate").innerText = `Birthday: ${birthday}`;
