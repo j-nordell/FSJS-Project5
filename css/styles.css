@@ -9,6 +9,7 @@
     --light-text: rgb(136, 141, 145);
     --vlight-text: rgb(147, 149, 151);
     --card-border:  rgb(203, 203, 203);
+    --highlight: rgb(228, 148, 0);
 }
 
 /* ====================== 
@@ -30,14 +31,16 @@ body {
 
 header {
     margin: 30px 0px 30px 0px;
+    text-align: left;
 }
+
 
 h1 {
     font-size: 1em;
     text-transform: uppercase;
     text-align: left;
+    display: inline;
 }
-
 
 img {
     border-radius: 50%;
@@ -52,6 +55,66 @@ img {
     width: 93%;
     margin: 0 auto;
 }
+
+.input-styling {
+    width: 250px;
+    height: 35px;
+    border: 2px solid var(--light-text);
+    box-sizing: border-box;
+    padding: 0 15px;
+      border-radius: 15px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.849);
+}
+
+#search-div {
+    display: inline-block;
+}
+
+#search {
+    margin-left: 25px;
+    font-size: 0.7em;
+    outline: 0;
+}
+
+#search:focus {
+    box-shadow: 0 0 2px 2px var(--highlight);
+	border: 2px solid var(--highlight);
+}
+
+.clear-search {
+    border:1px solid transparent;
+	background-color: transparent;
+	display: inline-block;
+	vertical-align: middle;
+    outline: 0;
+    cursor: pointer;
+}
+
+.clear-search:after {
+    content: "X";
+    display: block;
+    position: relative;
+	width: 15px;
+	height: 15px;
+	background-color: var(--dark-text);
+    z-index:1;
+    left: -35px;
+	margin: auto;
+	padding: 2px;
+	border-radius: 50%;
+	text-align: center;
+	color: white;
+	font-weight: normal;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+/* If nothing is in the search box turn off the display to clear */
+.input-styling:not(:valid) ~ .clear-search {
+    display: none;
+}
+
 .card {
     padding: 1.5em 1em;
     border: 3px solid var(--card-border);
@@ -171,7 +234,7 @@ img {
 #prev:focus,
 #next:hover,
 #next:focus {
-    text-shadow: 3px 3px 0.1em rgb(228, 148, 0), 0px 0px 10px rgb(228, 148, 0);
+    text-shadow: 3px 3px 0.1em var(--highlight), 0px 0px 10px var(--highlight);
     cursor: pointer;
 }
 

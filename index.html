@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
         <script src="js/app.js"></script>
     </head>
@@ -10,8 +11,17 @@
         <div class="wrapper">
             <header>
                 <h1>Awesome Startup Employee Directory</h1>
+                <div id="search-div">
+                    <form>
+                        <input id="search" required class="input-styling" placeholder="Search by name or username" />
+                        <button class="clear-search" type="reset"></button>
+                    </form>
+                </div>
             </header>
             <main>
+                <div id="no-results">
+                    
+                </div>
                 <div id="0" class="card">
                     <div class="card-img">
                         <img alt="employee picture">
