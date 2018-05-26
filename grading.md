@@ -23,7 +23,7 @@
 - There is a way to close the modal window
 
 ### Matching the Mockups
-- [ x Directory has been styled so that all the major elements are in place and roughly matches the mockups
+- [x] Directory has been styled so that all the major elements are in place and roughly matches the mockups
 
 ---
 
