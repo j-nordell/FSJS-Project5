@@ -36,6 +36,7 @@ function initApplication() {
 
   clearButton.addEventListener("click", function() {
     fillCards(allEmployees);
+    setupModal(allEmployees);
   });
 
   document.getElementsByTagName("form")[0].addEventListener("submit", function(e) {
