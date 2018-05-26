@@ -9,6 +9,7 @@ let allEmployees = null;
 
 getEmployees();
 
+// Get the 12 random employees from the APi from either the US or Great Britain
 function getEmployees() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -21,11 +22,28 @@ function getEmployees() {
   xhr.send();
 }
 
+// Set up the application
 function initApplication() {
+  let searchBox = document.getElementById("search");
+  let clearButton = document.getElementsByTagName("button")[0];
+
   fillCards(allEmployees);
-  setupModal();
+  setupModal(allEmployees);
+
+  searchBox.addEventListener("keyup", function() {
+    searchEmployees();
+  });
+
+  clearButton.addEventListener("click", function() {
+    fillCards(allEmployees);
+  });
+
+  document.getElementsByTagName("form")[0].addEventListener("submit", function(e) {
+    e.preventDefault();
+  });
 }
 
+// add the employee information as text into the appropriate places in the cards for the collection sent
 function fillCards(employeeList) {
   for(let i = 0; i < employeeList.length; i++) {
     let currentCard = document.getElementById(`${i}`);
@@ -33,9 +51,12 @@ function fillCards(employeeList) {
     currentCard.getElementsByClassName("fullname")[0].textContent = `${employeeList[i].name.first}  ${employeeList[i].name.last}`;
     currentCard.getElementsByClassName("email")[0].textContent = `${employeeList[i].email}`;
     currentCard.getElementsByClassName("city")[0].textContent = `${employeeList[i].location.city}`;
+    currentCard.style.display = "block";
   }
  }
 
+
+ // Set up the basic modal with navigation controls and ways to exit the modal
  function setupModal(employeeList) {
    // Get the modal
     let modal = document.getElementById('modal');
@@ -54,7 +75,7 @@ function fillCards(employeeList) {
       card.onclick = () => {
         modal.style.display = "block";
         let index = parseInt(card.id);
-        fillModal(index);
+        fillModal(employeeList[index]);
       };
     }
     // Clicking on the X causes the modal to close
@@ -69,22 +90,28 @@ function fillCards(employeeList) {
         }
     };
 
+    // Get the previous employee and fill in the modal with their information
     prev.onclick = (e) => {
-      let employeeId = getEmployeeId();
-      fillModal(((employeeId - 1) + allEmployees.length) % allEmployees.length);
+      let currentEmail = document.getElementById("modal-email").textContent.toLowerCase();
+      let employeeId = getEmployeeId(currentEmail);
+      let adjustedIndex = ((employeeId - 1) + allEmployees.length) % allEmployees.length;
+      fillModal(allEmployees[adjustedIndex]);
     };
 
+    // Get the next employee and fill in the modal with their information
     next.onclick = (e) => {
-      let employeeId = getEmployeeId();
-      fillModal(((employeeId + 1) + allEmployees.length) % allEmployees.length);
+      let currentEmail = document.getElementById("modal-email").textContent.toLowerCase();
+      let employeeId = getEmployeeId(currentEmail);
+      let adjustedIndex = ((employeeId + 1) + allEmployees.length) % allEmployees.length;
+      fillModal(allEmployees[adjustedIndex]);
     };
   }
 
-function getEmployeeId() {
-    let personMail = document.getElementById("modal-email").innerText.toLowerCase();
+// Identify which employee is currently loaded into the modal
+function getEmployeeId(email) {
     let personId;
     for(let i = 0; i < allEmployees.length; i++) {
-      if(allEmployees[i].email === personMail) {
+      if(allEmployees[i].email === email) {
         personId = i;
         return i;
       }
@@ -92,18 +119,48 @@ function getEmployeeId() {
     return null;
 }
 
-  function fillModal(index) {
-    let modalContent = document.getElementById("modal-content");
-    let employee= allEmployees[index];
+function fillModal(employee) {
+  let modalContent = document.getElementById("modal-content");
 
-    let birthday = new Date(employee.dob).toLocaleDateString();
-    modalContent.getElementsByTagName("img")[0].setAttribute("src", `${employee.picture.large}`);
-    document.getElementById("modal-fullname").innerText = `${employee.name.first}  ${employee.name.last}`;
-    document.getElementById("modal-email").innerText = `${employee.email}`;
-    document.getElementById("modal-city").innerText = `${employee.location.city}`;
-    document.getElementById("modal-telephone").innerText = `${employee.phone}`;
-    document.getElementById("modal-street").innerText = `${employee.location.street}\u00A0\u00A0${employee.location.city}, ${employee.location.state}\u00A0\u00A0${employee.location.postcode}`;
-    document.getElementById("modal-birthdate").innerText = `Birthday: ${birthday}`;
+  let birthday = new Date(employee.dob).toLocaleDateString();
+  modalContent.getElementsByTagName("img")[0].setAttribute("src", `${employee.picture.large}`);
+  document.getElementById("modal-fullname").innerText = `${employee.name.first}  ${employee.name.last}`;
+  document.getElementById("modal-email").innerText = `${employee.email}`;
+  document.getElementById("modal-city").innerText = `${employee.location.city}`;
+  document.getElementById("modal-telephone").innerText = `${employee.phone}`;
+  document.getElementById("modal-street").innerText = `${employee.location.street}\u00A0\u00A0${employee.location.city}, ${employee.location.state}\u00A0\u00A0${employee.location.postcode}`;
+  document.getElementById("modal-birthdate").innerText = `Birthday: ${birthday}`;
+}
+
+
+  function searchEmployees() {
+    let searchResults = [];
+    hideAllEmployees();
+    // Obtain the value of the search input
+    let searchString = document.getElementById("search").value.toLowerCase();
+
+    // If the search field contains an empty string reset back to default search
+    if(searchString == "") {
+        fillCards(allEmployees);
+    }
+
+    // Search through the employees' names and usernames for the text in the textbox and create a new list
+    for(var i = 0; i < allEmployees.length; i++) {
+        let firstName = allEmployees[i].name.first.toLowerCase();
+        let lastName = allEmployees[i].name.last.toLowerCase();
+        let username = allEmployees[i].login.username.toLowerCase();
+        if(firstName.includes(searchString) || lastName.includes(searchString) || username.includes(searchString) ) {
+            searchResults.push(allEmployees[i]);
+        }
+    }
+
+    fillCards(searchResults);
+    setupModal(searchResults);
   }
 
-
+function hideAllEmployees() {
+  let cards = document.getElementsByClassName("card");
+  for(let card of cards) {
+    card.style.display = "none";
+  }
+}

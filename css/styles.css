@@ -67,6 +67,10 @@ img {
     background: rgba(255, 255, 255, 0.849);
 }
 
+#no-results {
+    display: none;
+}
+
 #search-div {
     display: inline-block;
 }
